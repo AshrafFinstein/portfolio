@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ashraf A - ML Engineer Resume</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        /* Web View Setup */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #e5e7eb;
+            color: #1a1a1a;
+            line-height: 1.4;
+            margin: 0;
+            padding: 40px 0;
+        }
+
+        /* Essential for PDF generation scaling */
+        .resume-container {
+            width: 210mm;
+            min-height: 297mm;
+            margin: 0 auto;
+            background: white;
+            padding: 40px 50px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            box-sizing: border-box;
+            position: relative;
+        }
+
+        header {
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            font-size: 24pt;
+            font-weight: 700;
+            color: #000;
+            margin: 0;
+            letter-spacing: -0.02em;
+        }
+
+        .sub-header {
+            font-size: 13pt;
+            font-weight: 500;
+            color: #1f2937;
+            margin: 2px 0 6px 0;
+        }
+
+        .contact-info {
+            font-size: 9.5pt;
+            color: #4b5563;
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        section {
+            margin-top: 20px;
+        }
+
+        h2 {
+            font-size: 11pt;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            border-bottom: 2px solid #000;
+            padding-bottom: 2px;
+            margin-bottom: 10px;
+            color: #000;
+        }
+
+        .summary-text {
+            font-size: 10pt;
+            text-align: justify;
+            color: #1f2937;
+        }
+
+        .exp-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-top: 12px;
+        }
+
+        .bold-text {
+            font-size: 10.5pt;
+            font-weight: 700;
+            color: #000;
+        }
+
+        .medium-text {
+            font-size: 10pt;
+            font-weight: 500;
+            color: #374151;
+        }
+
+        .bullet-list {
+            list-style: none;
+            padding: 0;
+            margin: 6px 0 0 0;
+        }
+
+        .bullet-list li {
+            font-size: 9.5pt;
+            position: relative;
+            padding-left: 18px;
+            margin-bottom: 4px;
+            color: #374151;
+            line-height: 1.5;
+        }
+
+        .bullet-list li::before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+            color: #000;
+        }
+
+        /* Skills Table (matches sample layout) */
+        .skills-grid {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 5px;
+        }
+
+        .skills-grid td {
+            padding: 5px 0;
+            vertical-align: top;
+            font-size: 9.5pt;
+        }
+
+        .skill-key {
+            font-weight: 700;
+            width: 160px;
+            color: #000;
+        }
+
+        .skill-val {
+            color: #374151;
+        }
+
+        /* Floating UI */
+        .controls {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+
+        .download-btn {
+            background: #2563eb;
+            color: white;
+            border: none;
+            padding: 14px 24px;
+            border-radius: 50px;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.4);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 15px;
+            transition: all 0.2s;
+        }
+
+        .download-btn:hover {
+            background: #1d4ed8;
+            transform: translateY(-2px);
+        }
+
+        /* PRINT OVERRIDES */
+        @media print {
+            @page {
+                size: A4;
+                margin: 0;
+            }
+            body {
+                background: white !important;
+                padding: 0 !important;
+                margin: 0 !important;
+            }
+            .controls {
+                display: none !important;
+            }
+            .resume-container {
+                box-shadow: none !important;
+                margin: 0 !important;
+                width: 100% !important;
+                padding: 15mm 15mm !important;
+            }
+            * {
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="controls">
+        <button class="download-btn" onclick="triggerDownload()">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+            Export to PDF
+        </button>
+    </div>
+
+    <div class="resume-container" id="resume">
+        <header>
+            <h1>Ashraf A</h1>
+            <div class="sub-header">Machine Learning Engineer</div>
+            <div class="contact-info">
+                <span>📍 Tamil Nadu, India</span>
+                <span>📞 +91 81247 56887</span>
+                <span>✉️ ashrafmalik0319@gmail.com</span>
+                <span>🔗 linkedin.com/in/ashraf19032003</span>
+            </div>
+        </header>
+
+        <section>
+            <h2>Professional Summary</h2>
+            <p class="summary-text">
+                Dedicated Machine Learning Engineer with 2+ years of experience at Finstein, specializing in building and optimizing end-to-end ML pipelines using Azure Databricks, PySpark, and modern MLOps frameworks. Proficient in architecting scalable model development workflows, implementing MLflow-driven lifecycles, and automating data engineering solutions. Passionate about applying Large Language Models (LLMs) and security-embedded pipelines to solve complex business challenges.
+            </p>
+        </section>
+
+        <section>
+            <h2>Professional Experience</h2>
+            
+            <div class="exp-row">
+                <span class="bold-text">Machine Learning Engineer</span>
+                <span class="medium-text">May 2023 – Present</span>
+            </div>
+            <div class="exp-row" style="margin-top: 2px;">
+                <span class="medium-text">Finstein</span>
+                <span class="medium-text">Chennai, India</span>
+            </div>
+            <ul class="bullet-list">
+                <li>Architected and analyzed robust Machine Learning pipelines using <strong>Azure Databricks</strong> and <strong>PySpark</strong> to handle high-velocity data streams.</li>
+                <li>Designed and implemented predictive models using <strong>Scikit-learn</strong> and <strong>XGBoost</strong> to drive business decision-making and underwriting accuracy.</li>
+                <li>Orchestrated model lifecycles including experiment tracking, artifact versioning, and production deployment using <strong>MLflow</strong>.</li>
+                <li>Engineered complex features from large-scale datasets, implementing <strong>Delta Lake</strong> optimizations for efficient data retrieval and storage.</li>
+                <li>Partnered with cross-functional teams to review SQL-based data transformations and optimize cloud-based data processing workloads.</li>
+            </ul>
+
+            <div class="exp-row" style="margin-top: 15px;">
+                <span class="bold-text">ML Intern</span>
+                <span class="medium-text">Oct 2022 – Apr 2023</span>
+            </div>
+            <div class="exp-row" style="margin-top: 2px;">
+                <span class="medium-text">Finstein</span>
+                <span class="medium-text">Chennai, India</span>
+            </div>
+            <ul class="bullet-list">
+                <li>Assisted in the development of ML-based insurance underwriting workflows, focusing on data pipeline integrity and prediction accuracy.</li>
+                <li>Gained hands-on experience in <strong>MLflow</strong>, documenting model parameters and performance metrics during the R&D phase.</li>
+                <li>Performed exploratory data analysis (EDA), data cleaning, and outlier detection for diverse datasets using <strong>Pandas</strong> and <strong>NumPy</strong>.</li>
+                <li>Contributed to the optimization of SQL queries for backend data processing, improving data ingestion speeds.</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Key Projects</h2>
+            <div class="exp-row">
+                <span class="bold-text">Azure Databricks Pipeline with Automated Security Gates</span>
+            </div>
+            <p class="summary-text" style="margin-top: 4px;">
+                Designed a security-first data ingestion and transformation pipeline using <strong>Apache Spark</strong> on Azure Databricks. Integrated automated validation checks and security gates within the pipeline to ensure data compliance. Explored and integrated <strong>LLM-based solutions</strong> to automate data labeling and enhance semantic insights from unstructured data.
+            </p>
+        </section>
+
+        <section>
+            <h2>Technical Skills</h2>
+            <table class="skills-grid">
+                <tr>
+                    <td class="skill-key">ML & AI</td>
+                    <td class="skill-val">Scikit-learn, Pandas, NumPy, XGBoost, EDA, LLM Basics</td>
+                </tr>
+                <tr>
+                    <td class="skill-key">Big Data & Cloud</td>
+                    <td class="skill-val">Azure Databricks, PySpark, Apache Spark, Delta Lake, Azure Cloud</td>
+                </tr>
+                <tr>
+                    <td class="skill-key">MLOps & DevOps</td>
+                    <td class="skill-val">MLflow, CI/CD, Model Registry, Experiment Tracking, Git, Docker</td>
+                </tr>
+                <tr>
+                    <td class="skill-key">Programming</td>
+                    <td class="skill-val">Python (Advanced), SQL (Advanced), TypeScript, Java</td>
+                </tr>
+            </table>
+        </section>
+
+        <section>
+            <h2>Education</h2>
+            <div class="exp-row">
+                <span class="bold-text">Master of Computer Application (MCA)</span>
+                <span class="medium-text">2023 – 2025</span>
+            </div>
+            <div class="exp-row" style="margin-top: 2px;">
+                <span class="medium-text">Takshashila University</span>
+                <span class="medium-text">CGPA: 8.2</span>
+            </div>
+
+            <div class="exp-row" style="margin-top: 12px;">
+                <span class="bold-text">Bachelor of Computer Application (BCA)</span>
+                <span class="medium-text">2020 – 2023</span>
+            </div>
+            <div class="exp-row" style="margin-top: 2px;">
+                <span class="medium-text">Siga College of Management and Computer Science</span>
+                <span class="medium-text">CGPA: 8.0</span>
+            </div>
+        </section>
+
+        <section>
+            <h2>Additional Info</h2>
+            <p class="summary-text" style="font-size: 9.5pt;">
+                <strong>Certifications:</strong> Python Data Structures & OOP (SRM Info Tech)<br>
+                <strong>Languages:</strong> Urdu (Native), Tamil, English
+            </p>
+        </section>
+    </div>
+
+    <script>
+        function triggerDownload() {
+            const element = document.getElementById('resume');
+            html2pdf().from(element).save();
+        }
+    </script>
+</body>
+</html>

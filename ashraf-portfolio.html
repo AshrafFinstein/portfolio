@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ashraf A - Machine Learning Engineer Portfolio</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<style>
+
+        .chart-container {
+
+            position: relative;
+
+            width: 100%;
+
+            max-width: 650px;
+
+            margin-left: auto;
+
+            margin-right: auto;
+
+            height: 350px;
+
+            max-height: 400px;
+
+        }
+
+        @media (min-width: 768px) {
+
+            .chart-container {
+
+                height: 400px;
+
+            }
+
+        }
+
+        .nav-item {
+
+            cursor: pointer;
+
+            transition: all 0.3s ease;
+
+        }
+
+        .nav-item.active {
+
+            color: #0f766e;
+
+            border-bottom: 3px solid #0f766e;
+
+            font-weight: 600;
+
+        }
+
+        .view-section {
+
+            display: none;
+
+            animation: fadeIn 0.4s ease-in-out forwards;
+
+        }
+
+        .view-section.active {
+
+            display: block;
+
+        }
+
+        .timeline-bullet::before {
+
+            content: '•';
+
+            color: #0f766e;
+
+            font-size: 1.5rem;
+
+            position: absolute;
+
+            left: -1.25rem;
+
+            top: -0.25rem;
+
+        }
+
+        @keyframes fadeIn {
+
+            from { opacity: 0; transform: translateY(10px); }
+
+            to { opacity: 1; transform: translateY(0); }
+
+        }
+</style>
+<!-- Chosen Palette: Warm Stone & Deep Teal (bg-stone-50, text-stone-800, accent-teal-700) -->
+<!-- Application Structure Plan: A dynamic, single-page interactive portfolio dashboard. It replaces the linear reading experience of a traditional resume with a modular, user-driven exploration. A sticky top navigation bar allows users to switch between conceptual pillars: 'Overview' (Executive Summary), 'Expertise' (Interactive Skills Data), 'Journey' (Interactive Experience Timeline), and 'Projects & Education'. This reduces cognitive load by separating qualitative narratives from quantitative skill metrics, ensuring the user can find specific information (like MLflow experience or Azure skills) instantly based on their task. -->
+<!-- Visualization & Content Choices: 
+
+         1. Goal: Inform (Summary) -> Method: Clean typography and grouped text blocks -> Interaction: Tab navigation -> Justification: Immediate context setting for the candidate's core value proposition. 
+
+         2. Goal: Compare & Evaluate (Skills) -> Method: Chart.js Radar Chart wrapped in constrained container -> Interaction: Hover tooltips for skill clusters -> Justification: Allows recruiters to instantly visually assess the balance between Big Data, MLOps, and Core ML skills without reading a dense comma-separated list. NO SVG/Mermaid used.
+
+         3. Goal: Change/Chronology (Experience) -> Method: Vertical CSS Timeline with JS toggles -> Interaction: Clickable job roles that expand/highlight bullet points -> Justification: Shows progression clearly while keeping the UI uncluttered. 
+
+         4. Goal: Organize (Projects/Education) -> Method: Grid cards -> Interaction: Hover lift effect -> Justification: Segregates distinct projects into readable, bite-sized components. -->
+<!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+</head>
+<body class="bg-stone-50 text-stone-800 font-sans antialiased overflow-x-hidden">
+ 
+    <nav class="bg-white shadow-sm sticky top-0 z-50">
+<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex justify-between h-16">
+<div class="flex items-center">
+<span class="text-xl font-bold text-teal-800 tracking-tight">ASHRAF A <span class="text-stone-400 font-normal">| ML Engineer</span></span>
+</div>
+<div class="hidden sm:flex space-x-8 items-center h-full" id="desktop-nav">
+<div class="nav-item active h-full flex items-center px-2" data-target="section-overview">Overview</div>
+<div class="nav-item h-full flex items-center px-2" data-target="section-expertise">Expertise</div>
+<div class="nav-item h-full flex items-center px-2" data-target="section-journey">Journey</div>
+<div class="nav-item h-full flex items-center px-2" data-target="section-portfolio">Portfolio & Edu</div>
+</div>
+<div class="sm:hidden flex items-center">
+<select id="mobile-nav" class="bg-stone-100 border-none rounded p-2 text-stone-700 font-medium focus:ring-2 focus:ring-teal-600 outline-none">
+<option value="section-overview">Overview</option>
+<option value="section-expertise">Expertise</option>
+<option value="section-journey">Journey</option>
+<option value="section-portfolio">Portfolio & Edu</option>
+</select>
+</div>
+</div>
+</div>
+</nav>
+ 
+    <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10 min-h-screen">
+ 
+        <section id="section-overview" class="view-section active">
+<div class="bg-white rounded-2xl shadow-sm border border-stone-200 p-8 mb-8 relative overflow-hidden">
+<div class="absolute top-0 right-0 p-8 text-8xl opacity-5">🧑‍💻</div>
+<h1 class="text-4xl sm:text-5xl font-extrabold text-stone-900 mb-2">Ashraf A</h1>
+<h2 class="text-2xl text-teal-700 font-semibold mb-6">Machine Learning Engineer</h2>
+<div class="flex flex-wrap gap-4 text-sm text-stone-600 mb-8 font-medium">
+<div class="flex items-center gap-1 bg-stone-100 px-3 py-1 rounded-full">📍 Viluppuram, Tamil Nadu</div>
+<div class="flex items-center gap-1 bg-stone-100 px-3 py-1 rounded-full">📞 +91 81247 56887</div>
+<div class="flex items-center gap-1 bg-stone-100 px-3 py-1 rounded-full">✉️ ashrafmalik0319@gmail.com</div>
+</div>
+ 
+                <div class="prose max-w-none">
+<p class="text-lg leading-relaxed text-stone-700">
+
+                        Aspiring <strong class="text-teal-800">Machine Learning Engineer</strong> with over 2 years of experience at Finstein, specializing in building and optimizing end-to-end ML pipelines using <strong class="text-teal-800">Azure Databricks, PySpark</strong>, and modern ML frameworks. Expert in data preprocessing, exploratory data analysis (EDA), and scalable model development.
+</p>
+<p class="text-lg leading-relaxed text-stone-700 mt-4">
+
+                        Proficient in <strong class="text-teal-800">MLOps</strong> practices using <strong>MLflow</strong> for experiment tracking and model registry. Passionate about applying Large Language Models (LLMs) and automated data engineering solutions to solve complex business challenges.
+</p>
+</div>
+</div>
+ 
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<div class="bg-teal-50 rounded-xl p-6 border border-teal-100 cursor-default hover:shadow-md transition">
+<div class="text-3xl mb-3">🚀</div>
+<h3 class="text-lg font-bold text-teal-900 mb-2">End-to-End MLOps</h3>
+<p class="text-sm text-teal-800">Managing model lifecycles from EDA to production deployment using MLflow and Azure Databricks.</p>
+</div>
+<div class="bg-blue-50 rounded-xl p-6 border border-blue-100 cursor-default hover:shadow-md transition">
+<div class="text-3xl mb-3">📊</div>
+<h3 class="text-lg font-bold text-blue-900 mb-2">Big Data Processing</h3>
+<p class="text-sm text-blue-800">Handling high-velocity data streams and complex feature engineering with PySpark and Delta Lake.</p>
+</div>
+<div class="bg-indigo-50 rounded-xl p-6 border border-indigo-100 cursor-default hover:shadow-md transition">
+<div class="text-3xl mb-3">🧠</div>
+<h3 class="text-lg font-bold text-indigo-900 mb-2">Advanced Modeling</h3>
+<p class="text-sm text-indigo-800">Designing predictive models (Scikit-learn, XGBoost) and exploring LLM integrations for semantic insights.</p>
+</div>
+</div>
+</section>
+ 
+        <section id="section-expertise" class="view-section">
+<div class="mb-8">
+<h2 class="text-3xl font-bold text-stone-900 mb-3">Technical Expertise Profile</h2>
+<p class="text-stone-600 text-lg max-w-3xl">
+
+                    This interactive section visualizes my technical competencies categorized into core ML domains. The radar chart provides a holistic view of my skill distribution, emphasizing my balanced strengths in Data Engineering, MLOps, and Core Machine Learning.
+</p>
+</div>
+ 
+            <div class="bg-white rounded-2xl shadow-sm border border-stone-200 p-6 md:p-10 mb-8 grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+<div class="w-full">
+<div class="chart-container">
+<canvas id="skillsRadarChart"></canvas>
+</div>
+<p class="text-center text-xs text-stone-400 mt-4 italic">Visualization of relative proficiency and experience focus across domains.</p>
+</div>
+ 
+                <div class="space-y-6">
+<div>
+<h3 class="text-xl font-bold text-teal-800 mb-2 flex items-center gap-2"><span>🤖</span> Machine Learning & AI</h3>
+<div class="flex flex-wrap gap-2">
+<span class="bg-stone-100 text-stone-700 px-3 py-1 rounded font-medium text-sm">Scikit-learn</span>
+<span class="bg-stone-100 text-stone-700 px-3 py-1 rounded font-medium text-sm">Pandas</span>
+<span class="bg-stone-100 text-stone-700 px-3 py-1 rounded font-medium text-sm">NumPy</span>
+<span class="bg-stone-100 text-stone-700 px-3 py-1 rounded font-medium text-sm">XGBoost</span>
+<span class="bg-stone-100 text-stone-700 px-3 py-1 rounded font-medium text-sm">EDA</span>
+<span class="bg-teal-100 text-teal-800 px-3 py-1 rounded font-bold text-sm">LLM Basics</span>
+</div>
+</div>
+<div>
+<h3 class="text-xl font-bold text-teal-800 mb-2 flex items-center gap-2"><span>☁️</span> Big Data & Cloud</h3>
+<div class="flex flex-wrap gap-2">
+<span class="bg-blue-100 text-blue-800 px-3 py-1 rounded font-bold text-sm">Azure Databricks</span>
+<span class="bg-blue-100 text-blue-800 px-3 py-1 rounded font-bold text-sm">PySpark</span>
+<span class="bg-stone-100 text-stone-700 px-3 py-1 rounded font-medium text-sm">Apache Spark</span>
+<span class="bg-stone-100 text-stone-700 px-3 py-1 rounded font-medium text-sm">Delta Lake</span>
+<span class="bg-stone-100 text-stone-700 px-3 py-1 rounded font-medium text-sm">Azure Cloud Services</span>
+</div>
+</div>
+<div>
+<h3 class="text-xl font-bold text-teal-800 mb-2 flex items-center gap-2"><span>⚙️</span> MLOps & Data Engineering</h3>
+<div class="flex flex-wrap gap-2">
+<span class="bg-indigo-100 text-indigo-800 px-3 py-1 rounded font-bold text-sm">MLflow</span>
+<span class="bg-stone-100 text-stone-700 px-3 py-1 rounded font-medium text-sm">Model Registry</span>
+<span class="bg-stone-100 text-stone-700 px-3 py-1 rounded font-medium text-sm">CI/CD Pipelines</span>
+<span class="bg-stone-100 text-stone-700 px-3 py-1 rounded font-medium text-sm">ETL Workflows</span>
+<span class="bg-stone-100 text-stone-700 px-3 py-1 rounded font-medium text-sm">Feature Engineering</span>
+</div>
+</div>
+<div>
+<h3 class="text-xl font-bold text-teal-800 mb-2 flex items-center gap-2"><span>💻</span> Programming & Tools</h3>
+<div class="flex flex-wrap gap-2">
+<span class="bg-emerald-100 text-emerald-800 px-3 py-1 rounded font-bold text-sm">Python (Advanced)</span>
+<span class="bg-emerald-100 text-emerald-800 px-3 py-1 rounded font-bold text-sm">SQL (Advanced)</span>
+<span class="bg-stone-100 text-stone-700 px-3 py-1 rounded font-medium text-sm">TypeScript</span>
+<span class="bg-stone-100 text-stone-700 px-3 py-1 rounded font-medium text-sm">Java</span>
+<span class="bg-stone-100 text-stone-700 px-3 py-1 rounded font-medium text-sm">Git/GitHub</span>
+<span class="bg-stone-100 text-stone-700 px-3 py-1 rounded font-medium text-sm">Docker</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+ 
+        <section id="section-journey" class="view-section">
+<div class="mb-8">
+<h2 class="text-3xl font-bold text-stone-900 mb-3">Professional Journey</h2>
+<p class="text-stone-600 text-lg max-w-3xl">
+
+                    Explore my career progression at Finstein. Click on a role to highlight its specific contributions and see how my responsibilities evolved from foundational data preparation as an Intern to orchestrating complex ML pipelines as an Engineer.
+</p>
+</div>
+ 
+            <div class="bg-white rounded-2xl shadow-sm border border-stone-200 p-6 md:p-10 flex flex-col md:flex-row gap-10">
+<div class="md:w-1/3 border-l-2 border-stone-200 pl-6 relative">
+<div id="job-engineer" class="job-selector cursor-pointer mb-10 relative group" onclick="selectJob('engineer')">
+<div class="absolute w-4 h-4 rounded-full bg-stone-200 -left-[33px] top-1 group-hover:bg-teal-500 transition border-2 border-white job-indicator" id="ind-engineer"></div>
+<h3 class="text-xl font-bold text-stone-900 group-hover:text-teal-700 transition" id="title-engineer">ML Engineer</h3>
+<p class="text-teal-700 font-medium">Finstein — Chennai, India</p>
+<p class="text-sm text-stone-500 font-mono mt-1">May 2023 – Present</p>
+</div>
+ 
+                    <div id="job-intern" class="job-selector cursor-pointer relative group" onclick="selectJob('intern')">
+<div class="absolute w-4 h-4 rounded-full bg-stone-200 -left-[33px] top-1 group-hover:bg-teal-500 transition border-2 border-white job-indicator" id="ind-intern"></div>
+<h3 class="text-xl font-bold text-stone-900 group-hover:text-teal-700 transition" id="title-intern">ML Intern</h3>
+<p class="text-teal-700 font-medium">Finstein — Chennai, India</p>
+<p class="text-sm text-stone-500 font-mono mt-1">Oct 2022 – Apr 2023</p>
+</div>
+</div>
+ 
+                <div class="md:w-2/3 bg-stone-50 rounded-xl p-6 border border-stone-100 min-h-[300px]">
+<div id="details-engineer" class="job-details block animation-fadeIn">
+<h4 class="text-2xl font-bold text-teal-800 mb-4 border-b border-teal-100 pb-2">Key Responsibilities (Engineer)</h4>
+<ul class="space-y-4 pl-4 relative text-stone-700 text-lg">
+<li class="timeline-bullet relative"><strong class="text-stone-900">End-to-End ML Pipelines:</strong> Architected and analyzed robust Machine Learning pipelines using Azure Databricks and PySpark to handle high-velocity data streams.</li>
+<li class="timeline-bullet relative"><strong class="text-stone-900">Model Development:</strong> Designed and implemented predictive models using Scikit-learn and XGBoost to drive business decision-making and underwriting accuracy.</li>
+<li class="timeline-bullet relative"><strong class="text-stone-900">MLOps & Lifecycle:</strong> Orchestrated model lifecycles, including experiment tracking, artifact versioning, and production deployment using MLflow.</li>
+<li class="timeline-bullet relative"><strong class="text-stone-900">Feature Engineering:</strong> Engineered complex features from large-scale datasets, implementing Delta Lake optimizations for efficient data retrieval and storage.</li>
+<li class="timeline-bullet relative"><strong class="text-stone-900">Collaboration:</strong> Partnered with cross-functional teams to review SQL-based data transformations and optimize cloud-based data processing workloads.</li>
+</ul>
+</div>
+ 
+                    <div id="details-intern" class="job-details hidden animation-fadeIn">
+<h4 class="text-2xl font-bold text-stone-800 mb-4 border-b border-stone-200 pb-2">Key Responsibilities (Intern)</h4>
+<ul class="space-y-4 pl-4 relative text-stone-700 text-lg">
+<li class="timeline-bullet relative" style="color:#64748b"><strong class="text-stone-900">Underwriting Systems:</strong> Assisted in the development of ML-based insurance underwriting workflows, focusing on data pipeline integrity and prediction accuracy.</li>
+<li class="timeline-bullet relative" style="color:#64748b"><strong class="text-stone-900">Experimental Tracking:</strong> Gained hands-on experience in MLflow, documenting model parameters and performance metrics during the R&D phase.</li>
+<li class="timeline-bullet relative" style="color:#64748b"><strong class="text-stone-900">Data Preparation:</strong> Performed exploratory data analysis (EDA), data cleaning, and outlier detection for diverse datasets using Pandas and NumPy.</li>
+<li class="timeline-bullet relative" style="color:#64748b"><strong class="text-stone-900">Technical Optimization:</strong> Contributed to the optimization of SQL queries for backend data processing, improving data ingestion speeds.</li>
+</ul>
+</div>
+</div>
+ 
+            </div>
+</section>
+ 
+        <section id="section-portfolio" class="view-section">
+<div class="mb-8">
+<h2 class="text-3xl font-bold text-stone-900 mb-3">Featured Projects & Education</h2>
+<p class="text-stone-600 text-lg max-w-3xl">
+
+                    A deep dive into major structural projects implemented at Finstein, alongside my academic foundations that empower my data and algorithmic capabilities.
+</p>
+</div>
+ 
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+<div class="bg-white rounded-2xl shadow-sm border border-stone-200 p-8 hover:border-teal-300 transition-colors duration-300">
+<div class="inline-block bg-teal-100 text-teal-800 px-3 py-1 rounded font-bold text-xs uppercase tracking-wider mb-4">Core Enterprise Project</div>
+<h3 class="text-2xl font-bold text-stone-900 mb-2">Azure Databricks Pipeline</h3>
+<p class="text-teal-700 font-medium mb-6">Automated Security Gates (ML & LLM Integration) at Finstein</p>
+<div class="space-y-4 text-stone-700">
+<p><strong class="text-stone-900 block border-b border-stone-100 pb-1 mb-1">Architecture</strong> Designed a scalable data ingestion and transformation pipeline using Apache Spark on Azure Databricks.</p>
+<p><strong class="text-stone-900 block border-b border-stone-100 pb-1 mb-1">AI Integration</strong> Explored and integrated LLM-based solutions to automate data labeling and enhance semantic insights from unstructured data.</p>
+<p><strong class="text-stone-900 block border-b border-stone-100 pb-1 mb-1">Governance</strong> Implemented automated validation checks and security gates within the pipeline to ensure data compliance and model reliability.</p>
+<p><strong class="text-stone-900 block border-b border-stone-100 pb-1 mb-1">Lifecycle Management</strong> Managed the full model transition from staging to production using MLflow Model Registry.</p>
+</div>
+</div>
+ 
+                <div class="space-y-8">
+<div class="bg-stone-800 text-white rounded-2xl shadow-sm p-8 relative overflow-hidden">
+<div class="absolute top-0 right-0 p-4 text-6xl opacity-10">🎓</div>
+<h3 class="text-2xl font-bold mb-6 text-teal-300 border-b border-stone-600 pb-2">Academic Background</h3>
+<div class="mb-6">
+<h4 class="text-xl font-bold text-white">Master of Computer Application (MCA)</h4>
+<p class="text-stone-400">Takshashila University</p>
+<div class="flex items-center gap-4 mt-2">
+<span class="bg-stone-700 px-2 py-1 rounded text-sm text-stone-200 font-mono">Sep 2023 – May 2025</span>
+<span class="text-teal-400 font-bold">CGPA: 8.2</span>
+</div>
+</div>
+ 
+                        <div>
+<h4 class="text-xl font-bold text-white">Bachelor of Computer Application (BCA)</h4>
+<p class="text-stone-400">Siga College of Management & Computer Science</p>
+<div class="flex items-center gap-4 mt-2">
+<span class="bg-stone-700 px-2 py-1 rounded text-sm text-stone-200 font-mono">Aug 2020 – Jun 2023</span>
+<span class="text-teal-400 font-bold">CGPA: 8.0</span>
+</div>
+</div>
+</div>
+ 
+                    <div class="bg-white rounded-2xl shadow-sm border border-stone-200 p-8 flex items-start gap-4">
+<div class="text-4xl">📜</div>
+<div>
+<h3 class="text-lg font-bold text-stone-900 mb-1">Certifications & Languages</h3>
+<p class="text-stone-700 text-sm mb-3">Completed a comprehensive <strong>Python course</strong> at SRM Info Tech, focusing deeply on Data Structures, Algorithms, and Object-Oriented Programming (OOP).</p>
+<div class="flex gap-2">
+<span class="bg-stone-100 text-stone-600 px-2 py-1 text-xs rounded border border-stone-200">Urdu (Native)</span>
+<span class="bg-stone-100 text-stone-600 px-2 py-1 text-xs rounded border border-stone-200">Tamil</span>
+<span class="bg-stone-100 text-stone-600 px-2 py-1 text-xs rounded border border-stone-200">English</span>
+</div>
+</div>
+</div>
+</div>
+ 
+            </div>
+</section>
+ 
+    </main>
+ 
+    <footer class="bg-stone-900 text-stone-400 py-8 text-center text-sm">
+<p>Interactive Resume SPA based on Ashraf A's Profile. Designed for optimal data exploration.</p>
+</footer>
+ 
+    <script>
+
+        const navItems = document.querySelectorAll('.nav-item');
+
+        const sections = document.querySelectorAll('.view-section');
+
+        const mobileNav = document.getElementById('mobile-nav');
+
+        let chartInstance = null;
+ 
+        function switchSection(targetId) {
+
+            navItems.forEach(item => {
+
+                if(item.dataset.target === targetId) {
+
+                    item.classList.add('active');
+
+                } else {
+
+                    item.classList.remove('active');
+
+                }
+
+            });
+ 
+            if (mobileNav.value !== targetId) {
+
+                mobileNav.value = targetId;
+
+            }
+ 
+            sections.forEach(sec => {
+
+                if(sec.id === targetId) {
+
+                    sec.classList.add('active');
+
+                    if (targetId === 'section-expertise' && !chartInstance) {
+
+                        initChart();
+
+                    }
+
+                } else {
+
+                    sec.classList.remove('active');
+
+                }
+
+            });
+
+        }
+ 
+        navItems.forEach(item => {
+
+            item.addEventListener('click', () => {
+
+                switchSection(item.dataset.target);
+
+            });
+
+        });
+ 
+        mobileNav.addEventListener('change', (e) => {
+
+            switchSection(e.target.value);
+
+        });
+ 
+        function selectJob(jobType) {
+
+            document.querySelectorAll('.job-details').forEach(el => el.classList.add('hidden'));
+
+            document.getElementById(`details-${jobType}`).classList.remove('hidden');
+ 
+            document.querySelectorAll('.job-indicator').forEach(el => {
+
+                el.classList.remove('bg-teal-600');
+
+                el.classList.add('bg-stone-200');
+
+            });
+
+            document.getElementById(`ind-${jobType}`).classList.remove('bg-stone-200');
+
+            document.getElementById(`ind-${jobType}`).classList.add('bg-teal-600');
+ 
+            document.querySelectorAll('.job-selector h3').forEach(el => el.classList.remove('text-teal-700'));
+
+            document.getElementById(`title-${jobType}`).classList.add('text-teal-700');
+
+        }
+ 
+        selectJob('engineer');
+ 
+        function initChart() {
+
+            const ctx = document.getElementById('skillsRadarChart').getContext('2d');
+
+            const data = {
+
+                labels: [
+
+                    ['Data Prep &', 'Engineering'],
+
+                    ['MLOps &', 'Lifecycles'],
+
+                    ['Cloud', 'Platforms'],
+
+                    ['Predictive', 'Modeling'],
+
+                    ['Programming', '& Logic'],
+
+                    ['LLM', 'Integration']
+
+                ],
+
+                datasets: [{
+
+                    label: 'Self-Assessed Proficiency',
+
+                    data: [85, 90, 85, 80, 95, 70],
+
+                    backgroundColor: 'rgba(15, 118, 110, 0.2)',
+
+                    borderColor: 'rgba(15, 118, 110, 1)',
+
+                    pointBackgroundColor: 'rgba(15, 118, 110, 1)',
+
+                    pointBorderColor: '#fff',
+
+                    pointHoverBackgroundColor: '#fff',
+
+                    pointHoverBorderColor: 'rgba(15, 118, 110, 1)',
+
+                    borderWidth: 2,
+
+                }]
+
+            };
+ 
+            const config = {
+
+                type: 'radar',
+
+                data: data,
+
+                options: {
+
+                    responsive: true,
+
+                    maintainAspectRatio: false,
+
+                    scales: {
+
+                        r: {
+
+                            angleLines: { color: 'rgba(0, 0, 0, 0.1)' },
+
+                            grid: { color: 'rgba(0, 0, 0, 0.1)' },
+
+                            pointLabels: {
+
+                                font: { size: 12, family: "'Inter', sans-serif", weight: '600' },
+
+                                color: '#444'
+
+                            },
+
+                            ticks: {
+
+                                display: false,
+
+                                min: 0,
+
+                                max: 100,
+
+                                stepSize: 20
+
+                            }
+
+                        }
+
+                    },
+
+                    plugins: {
+
+                        legend: { display: false },
+
+                        tooltip: {
+
+                            backgroundColor: 'rgba(28, 25, 23, 0.9)',
+
+                            titleFont: { size: 14, family: "'Inter', sans-serif" },
+
+                            bodyFont: { size: 13, family: "'Inter', sans-serif" },
+
+                            padding: 10,
+
+                            displayColors: false,
+
+                            callbacks: {
+
+                                label: function(context) {
+
+                                    let label = context.dataset.label || '';
+
+                                    if (label) { label += ': '; }
+
+                                    if (context.parsed.r !== null) { label += context.parsed.r + '/100'; }
+
+                                    return label;
+
+                                }
+
+                            }
+
+                        }
+
+                    }
+
+                },
+
+            };
+ 
+            chartInstance = new Chart(ctx, config);
+
+        }
+</script>
+</body>
+</html>
+ 
