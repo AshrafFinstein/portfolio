@@ -4,8 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Ashraf A - Machine Learning Engineer Portfolio</title>
-<script src="https://cdn.tailwindcss.com"></script>
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<link href="dist/output.css" rel="stylesheet">
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <style>
 
         .chart-container {
@@ -84,12 +86,240 @@
 
         }
 
-        @keyframes fadeIn {
+        .card-3d {
+            perspective: 1000px;
+        }
 
-            from { opacity: 0; transform: translateY(10px); }
+        .card-3d .card {
+            transform-style: preserve-3d;
+            transition: transform 0.6s ease, box-shadow 0.6s ease;
+        }
 
-            to { opacity: 1; transform: translateY(0); }
+        .card-3d .card:hover {
+            transform: rotateY(10deg) rotateX(5deg) translateZ(20px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+        }
 
+        .ml-grid {
+            position: absolute;
+            top: -42px;
+            right: -42px;
+            width: 220px;
+            height: 220px;
+            transform-style: preserve-3d;
+            animation: rotateGrid 12s linear infinite;
+            pointer-events: none;
+            z-index: 1;
+            border-radius: 24px;
+            box-shadow: inset 0 0 18px rgba(34,197,94,.25), 0 0 35px rgba(34,197,94,.4);
+        }
+
+        .ml-grid::before,
+        .ml-grid::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border: 1px solid rgba(34,197,94,0.35);
+            border-radius: 18px;
+            box-shadow: 0 0 15px rgba(34,197,94,0.25);
+        }
+
+        @keyframes rotateGrid {
+            from { transform: rotateX(15deg) rotateY(0deg) rotateZ(0deg); }
+            to { transform: rotateX(15deg) rotateY(360deg) rotateZ(0deg); }
+        }
+
+        .dark .card,
+        .dark .navigation-card {
+            background: linear-gradient(135deg, #0f172a, #111827);
+            border-color: rgba(100, 116, 139, 0.35);
+        }
+
+        .dark .text-teal-700, .dark .text-teal-800 {
+            color: #2dd4bf !important;
+        }
+
+        .glow-3d {
+            position: relative;
+            background: linear-gradient(135deg, rgba(15,118,110,.35), rgba(14,116,144,.40));
+            color: #e0f2fe;
+            border-radius: 22px;
+            box-shadow: 0 16px 40px rgba(20, 184, 166, 0.4), inset 0 0 18px rgba(20, 184, 166, 0.3);
+            transform-style: preserve-3d;
+            overflow: hidden;
+        }
+
+        .glow-3d::before {
+            content: '';
+            position: absolute;
+            inset: -50%;
+            background: radial-gradient(circle, rgba(34,197,94,0.35), transparent 55%);
+            animation: pulseGlow 3s infinite ease-in-out;
+        }
+
+        @keyframes pulseGlow {
+            0%, 100% { transform: scale(0.95); opacity: 0.65; }
+            50% { transform: scale(1.1); opacity: 0.42; }
+        }
+
+        /* ML Animated text pulse */
+        .pulse {
+            animation: pulseGlow 2.4s infinite ease-in-out;
+            text-shadow: 0 0 14px rgba(34,197,94,.8), 0 0 40px rgba(34,197,94,.4);
+        }
+
+        /* ML card 3D hover effect plus neutral */
+        .card {
+            transform-style: preserve-3d;
+            transition: all 0.35s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-8px) rotateX(2deg) rotateY(2deg);
+            box-shadow: 0 20px 38px rgba(0, 0, 0, 0.35);
+        }
+
+        /* ML matrix-style lines */
+        .background-grid {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            background-image: linear-gradient(0deg, rgba(15, 118, 110, 0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(15, 118, 110, 0.06) 1px, transparent 1px);
+            background-size: 22px 22px;
+            z-index: -1;
+        }
+
+        .dark .background-grid {
+            background-image: linear-gradient(0deg, rgba(34, 197, 94, 0.08) 1px, transparent 1px), linear-gradient(90deg, rgba(34, 197, 94, 0.08) 1px, transparent 1px);
+        }
+
+        /* ML card accent glow for data code blocks */
+        .data-chip {
+            background: rgba(34, 197, 94, 0.1);
+            border: 1px solid rgba(34, 197, 94, 0.3);
+            box-shadow: 0 0 26px rgba(34, 197, 94, 0.25);
+        }
+
+        /* hover-ready animate tilt */
+        .tilt:hover {
+            transform: perspective(900px) rotateX(3deg) rotateY(5deg);
+        }
+
+        .tilt {
+            transition: transform 0.45s ease;
+        }
+
+        /* dark border accent for section */
+        .card-section {
+            background: rgba(15,23,42,.6);
+            border: 1px solid rgba(15,118,110,.3);
+            box-shadow: 0 0 18px rgba(14,116,144,.25);
+        }
+
+        .dark .btn {
+            background: linear-gradient(135deg, #0f766e, #0891b2);
+            color: #ffffff;
+        }
+
+        .btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 8px 20px rgba(14,116,144,.4);
+        }
+
+        /* toy 3D machine glyph */
+        .chip-ring {
+            position: absolute;
+            top: 14px;
+            left: -28px;
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            border: 2px solid rgba(34,197,94,.5);
+            box-shadow: 0 0 18px rgba(34,197,94,.35);
+            animation: ringPulse 4s ease-in-out infinite;
+        }
+
+        @keyframes ringPulse {
+            0%, 100% { transform: scale(0.96); opacity: 0.9; }
+            50% { transform: scale(1.12); opacity: 0.42; }
+        }
+
+        /* more hover glow on role cards */
+        .role-card:hover {
+            filter: brightness(1.08);
+            box-shadow: 0 18px 28px rgba(56, 189, 248, 0.35);
+        }
+
+        /* small hover glow text animation */
+        .glow-hover:hover {
+            text-shadow: 0 0 14px rgba(59, 130, 246, 0.8), 0 0 24px rgba(34, 197, 94, 0.6);
+        }
+
+        /* ensures data output is visible in dark mode */
+        .dark p,
+        .dark li,
+        .dark h2,
+        .dark h3,
+        .dark h4 {
+            color: #e5e7eb;
+        }
+
+        /* visual 3D line and network connection effect */
+        .data-network {
+            position: absolute;
+            left: 6%;
+            top: 42%;
+            width: 90%;
+            height: 90%;
+            opacity: 0.18;
+            pointer-events: none;
+            background: radial-gradient(circle, rgba(15,118,110,0.12), transparent 60%);
+            filter: blur(0.7px);
+            animation: drift 10s ease-in-out infinite alternate;
+        }
+
+        @keyframes drift {
+            from { transform: translateX(0) translateY(0) scale(1.01); }
+            to { transform: translateX(-1.2%) translateY(-1.1%) scale(1); }
+        }
+
+        /* ensures top nav is contrast in dark mode */
+        .dark .nav-item {
+            color: #94a3b8;
+        }
+
+        .dark .nav-item.active {
+            color: #2dd4bf;
+            border-bottom-color: #2dd4bf;
+        }
+        body.dark {
+            background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%);
+            background-attachment: fixed;
+        }
+
+        body.dark::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 20% 80%, rgba(59, 130, 246, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(16, 185, 129, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(245, 101, 101, 0.05) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        /* Floating Animation */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .float {
+            animation: float 3s ease-in-out infinite;
         }
 </style>
 <!-- Chosen Palette: Warm Stone & Deep Teal (bg-stone-50, text-stone-800, accent-teal-700) -->
@@ -105,22 +335,27 @@
          4. Goal: Organize (Projects/Education) -> Method: Grid cards -> Interaction: Hover lift effect -> Justification: Segregates distinct projects into readable, bite-sized components. -->
 <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
 </head>
-<body class="bg-stone-50 text-stone-800 font-sans antialiased overflow-x-hidden">
+<body class="bg-stone-50 dark:bg-stone-900 text-stone-800 dark:text-stone-100 font-sans antialiased overflow-x-hidden">
  
-    <nav class="bg-white shadow-sm sticky top-0 z-50">
+    <nav class="bg-white dark:bg-stone-800 shadow-sm sticky top-0 z-50">
 <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
 <div class="flex justify-between h-16">
 <div class="flex items-center">
-<span class="text-xl font-bold text-teal-800 tracking-tight">ASHRAF A <span class="text-stone-400 font-normal">| ML Engineer</span></span>
+<span class="text-xl font-bold text-teal-800 dark:text-teal-400 tracking-tight">ASHRAF A <span class="text-stone-400 dark:text-stone-500 font-normal">| ML Engineer</span></span>
 </div>
 <div class="hidden sm:flex space-x-8 items-center h-full" id="desktop-nav">
 <div class="nav-item active h-full flex items-center px-2" data-target="section-overview">Overview</div>
 <div class="nav-item h-full flex items-center px-2" data-target="section-expertise">Expertise</div>
 <div class="nav-item h-full flex items-center px-2" data-target="section-journey">Journey</div>
 <div class="nav-item h-full flex items-center px-2" data-target="section-portfolio">Portfolio & Edu</div>
+<button onclick="toggleDarkMode()" class="ml-4 p-2 rounded-full bg-stone-200 hover:bg-stone-300 dark:bg-stone-700 dark:hover:bg-stone-600 transition-colors">
+  <svg class="w-5 h-5 text-stone-700 dark:text-stone-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
+  </svg>
+</button>
 </div>
 <div class="sm:hidden flex items-center">
-<select id="mobile-nav" class="bg-stone-100 border-none rounded p-2 text-stone-700 font-medium focus:ring-2 focus:ring-teal-600 outline-none">
+<select id="mobile-nav" class="bg-stone-100 dark:bg-stone-700 border-none rounded p-2 text-stone-700 dark:text-stone-300 font-medium focus:ring-2 focus:ring-teal-600 outline-none">
 <option value="section-overview">Overview</option>
 <option value="section-expertise">Expertise</option>
 <option value="section-journey">Journey</option>
@@ -133,21 +368,24 @@
  
     <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10 min-h-screen">
  
-        <section id="section-overview" class="view-section active">
-<div class="bg-white rounded-2xl shadow-sm border border-stone-200 p-8 mb-8 relative overflow-hidden">
-<div class="absolute top-0 right-0 p-8 text-8xl opacity-5">🧑‍💻</div>
-<h1 class="text-4xl sm:text-5xl font-extrabold text-stone-900 mb-2">Ashraf A</h1>
-<h2 class="text-2xl text-teal-700 font-semibold mb-6">Machine Learning Engineer</h2>
-<div class="flex flex-wrap gap-4 text-sm text-stone-600 mb-8 font-medium">
-<div class="flex items-center gap-1 bg-stone-100 px-3 py-1 rounded-full">📍 Viluppuram, Tamil Nadu</div>
-<div class="flex items-center gap-1 bg-stone-100 px-3 py-1 rounded-full">📞 +91 81247 56887</div>
-<div class="flex items-center gap-1 bg-stone-100 px-3 py-1 rounded-full">✉️ ashrafmalik0319@gmail.com</div>
+        <section id="section-overview" class="view-section active" data-aos="fade-up">
+<div class="bg-white dark:bg-stone-800 rounded-2xl shadow-sm border border-stone-200 dark:border-stone-700 p-8 mb-8 relative overflow-hidden card-3d glow-3d">
+<div class="ml-grid"></div>
+<div class="data-network"></div>
+<div class="chip-ring"></div>
+<div class="absolute top-0 right-0 p-8 text-8xl opacity-5 float">🧑‍💻</div>
+<h1 class="text-4xl sm:text-5xl font-extrabold text-stone-900 dark:text-stone-100 mb-2">Ashraf A</h1>
+<h2 class="text-2xl text-teal-700 dark:text-teal-400 font-semibold mb-6">Machine Learning Engineer</h2>
+<div class="flex flex-wrap gap-4 text-sm text-stone-600 dark:text-stone-400 mb-8 font-medium">
+<div class="flex items-center gap-1 bg-stone-100 dark:bg-stone-700 px-3 py-1 rounded-full">📍 Viluppuram, Tamil Nadu</div>
+<div class="flex items-center gap-1 bg-stone-100 dark:bg-stone-700 px-3 py-1 rounded-full">📞 +91 81247 56887</div>
+<div class="flex items-center gap-1 bg-stone-100 dark:bg-stone-700 px-3 py-1 rounded-full">✉️ ashrafmalik0319@gmail.com</div>
 </div>
  
                 <div class="prose max-w-none">
-<p class="text-lg leading-relaxed text-stone-700">
+<p class="text-lg leading-relaxed text-stone-700 dark:text-stone-300">
 
-                        Aspiring <strong class="text-teal-800">Machine Learning Engineer</strong> with over 2 years of experience at Finstein, specializing in building and optimizing end-to-end ML pipelines using <strong class="text-teal-800">Azure Databricks, PySpark</strong>, and modern ML frameworks. Expert in data preprocessing, exploratory data analysis (EDA), and scalable model development.
+                        Aspiring <strong class="text-teal-800 dark:text-teal-400">Machine Learning Engineer</strong> with over 2 years of experience at Finstein, specializing in building and optimizing end-to-end ML pipelines using <strong class="text-teal-800 dark:text-teal-400">Azure Databricks, PySpark</strong>, and modern ML frameworks. Expert in data preprocessing, exploratory data analysis (EDA), and scalable model development.
 </p>
 <p class="text-lg leading-relaxed text-stone-700 mt-4">
 
@@ -175,16 +413,16 @@
 </div>
 </section>
  
-        <section id="section-expertise" class="view-section">
+        <section id="section-expertise" class="view-section" data-aos="fade-up">
 <div class="mb-8">
-<h2 class="text-3xl font-bold text-stone-900 mb-3">Technical Expertise Profile</h2>
-<p class="text-stone-600 text-lg max-w-3xl">
+<h2 class="text-3xl font-bold text-stone-900 dark:text-stone-100 mb-3">Technical Expertise Profile</h2>
+<p class="text-stone-600 dark:text-stone-400 text-lg max-w-3xl">
 
                     This interactive section visualizes my technical competencies categorized into core ML domains. The radar chart provides a holistic view of my skill distribution, emphasizing my balanced strengths in Data Engineering, MLOps, and Core Machine Learning.
 </p>
 </div>
  
-            <div class="bg-white rounded-2xl shadow-sm border border-stone-200 p-6 md:p-10 mb-8 grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+            <div class="bg-white dark:bg-stone-800 rounded-2xl shadow-sm border border-stone-200 dark:border-stone-700 p-6 md:p-10 mb-8 grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
 <div class="w-full">
 <div class="chart-container">
 <canvas id="skillsRadarChart"></canvas>
@@ -239,51 +477,51 @@
 </div>
 </section>
  
-        <section id="section-journey" class="view-section">
+        <section id="section-journey" class="view-section" data-aos="fade-up">
 <div class="mb-8">
-<h2 class="text-3xl font-bold text-stone-900 mb-3">Professional Journey</h2>
-<p class="text-stone-600 text-lg max-w-3xl">
+<h2 class="text-3xl font-bold text-stone-900 dark:text-stone-100 mb-3">Professional Journey</h2>
+<p class="text-stone-600 dark:text-stone-400 text-lg max-w-3xl">
 
                     Explore my career progression at Finstein. Click on a role to highlight its specific contributions and see how my responsibilities evolved from foundational data preparation as an Intern to orchestrating complex ML pipelines as an Engineer.
 </p>
 </div>
  
-            <div class="bg-white rounded-2xl shadow-sm border border-stone-200 p-6 md:p-10 flex flex-col md:flex-row gap-10">
-<div class="md:w-1/3 border-l-2 border-stone-200 pl-6 relative">
+            <div class="bg-white dark:bg-stone-800 rounded-2xl shadow-sm border border-stone-200 dark:border-stone-700 p-6 md:p-10 flex flex-col md:flex-row gap-10">
+<div class="md:w-1/3 border-l-2 border-stone-200 dark:border-stone-600 pl-6 relative">
 <div id="job-engineer" class="job-selector cursor-pointer mb-10 relative group" onclick="selectJob('engineer')">
-<div class="absolute w-4 h-4 rounded-full bg-stone-200 -left-[33px] top-1 group-hover:bg-teal-500 transition border-2 border-white job-indicator" id="ind-engineer"></div>
-<h3 class="text-xl font-bold text-stone-900 group-hover:text-teal-700 transition" id="title-engineer">ML Engineer</h3>
-<p class="text-teal-700 font-medium">Finstein — Chennai, India</p>
-<p class="text-sm text-stone-500 font-mono mt-1">May 2023 – Present</p>
+<div class="absolute w-4 h-4 rounded-full bg-stone-200 dark:bg-stone-600 -left-[33px] top-1 group-hover:bg-teal-500 transition border-2 border-white dark:border-stone-800 job-indicator" id="ind-engineer"></div>
+<h3 class="text-xl font-bold text-stone-900 dark:text-stone-100 group-hover:text-teal-700 dark:group-hover:text-teal-400 transition" id="title-engineer">ML Engineer</h3>
+<p class="text-teal-700 dark:text-teal-400 font-medium">Finstein — Chennai, India</p>
+<p class="text-sm text-stone-500 dark:text-stone-400 font-mono mt-1">May 2023 – Present</p>
 </div>
  
                     <div id="job-intern" class="job-selector cursor-pointer relative group" onclick="selectJob('intern')">
-<div class="absolute w-4 h-4 rounded-full bg-stone-200 -left-[33px] top-1 group-hover:bg-teal-500 transition border-2 border-white job-indicator" id="ind-intern"></div>
-<h3 class="text-xl font-bold text-stone-900 group-hover:text-teal-700 transition" id="title-intern">ML Intern</h3>
-<p class="text-teal-700 font-medium">Finstein — Chennai, India</p>
-<p class="text-sm text-stone-500 font-mono mt-1">Oct 2022 – Apr 2023</p>
+<div class="absolute w-4 h-4 rounded-full bg-stone-200 dark:bg-stone-600 -left-[33px] top-1 group-hover:bg-teal-500 transition border-2 border-white dark:border-stone-800 job-indicator" id="ind-intern"></div>
+<h3 class="text-xl font-bold text-stone-900 dark:text-stone-100 group-hover:text-teal-700 dark:group-hover:text-teal-400 transition" id="title-intern">ML Intern</h3>
+<p class="text-teal-700 dark:text-teal-400 font-medium">Finstein — Chennai, India</p>
+<p class="text-sm text-stone-500 dark:text-stone-400 font-mono mt-1">Oct 2022 – Apr 2023</p>
 </div>
 </div>
  
-                <div class="md:w-2/3 bg-stone-50 rounded-xl p-6 border border-stone-100 min-h-[300px]">
+                <div class="md:w-2/3 bg-stone-50 dark:bg-stone-700 rounded-xl p-6 border border-stone-100 dark:border-stone-600 min-h-[300px]">
 <div id="details-engineer" class="job-details block animation-fadeIn">
-<h4 class="text-2xl font-bold text-teal-800 mb-4 border-b border-teal-100 pb-2">Key Responsibilities (Engineer)</h4>
-<ul class="space-y-4 pl-4 relative text-stone-700 text-lg">
-<li class="timeline-bullet relative"><strong class="text-stone-900">End-to-End ML Pipelines:</strong> Architected and analyzed robust Machine Learning pipelines using Azure Databricks and PySpark to handle high-velocity data streams.</li>
-<li class="timeline-bullet relative"><strong class="text-stone-900">Model Development:</strong> Designed and implemented predictive models using Scikit-learn and XGBoost to drive business decision-making and underwriting accuracy.</li>
-<li class="timeline-bullet relative"><strong class="text-stone-900">MLOps & Lifecycle:</strong> Orchestrated model lifecycles, including experiment tracking, artifact versioning, and production deployment using MLflow.</li>
-<li class="timeline-bullet relative"><strong class="text-stone-900">Feature Engineering:</strong> Engineered complex features from large-scale datasets, implementing Delta Lake optimizations for efficient data retrieval and storage.</li>
-<li class="timeline-bullet relative"><strong class="text-stone-900">Collaboration:</strong> Partnered with cross-functional teams to review SQL-based data transformations and optimize cloud-based data processing workloads.</li>
+<h4 class="text-2xl font-bold text-teal-800 dark:text-teal-400 mb-4 border-b border-teal-100 dark:border-teal-600 pb-2">Key Responsibilities (Engineer)</h4>
+<ul class="space-y-4 pl-4 relative text-stone-700 dark:text-stone-300 text-lg">
+<li class="timeline-bullet relative"><strong class="text-stone-900 dark:text-stone-100">End-to-End ML Pipelines:</strong> Architected and analyzed robust Machine Learning pipelines using Azure Databricks and PySpark to handle high-velocity data streams.</li>
+<li class="timeline-bullet relative"><strong class="text-stone-900 dark:text-stone-100">Model Development:</strong> Designed and implemented predictive models using Scikit-learn and XGBoost to drive business decision-making and underwriting accuracy.</li>
+<li class="timeline-bullet relative"><strong class="text-stone-900 dark:text-stone-100">MLOps & Lifecycle:</strong> Orchestrated model lifecycles, including experiment tracking, artifact versioning, and production deployment using MLflow.</li>
+<li class="timeline-bullet relative"><strong class="text-stone-900 dark:text-stone-100">Feature Engineering:</strong> Engineered complex features from large-scale datasets, implementing Delta Lake optimizations for efficient data retrieval and storage.</li>
+<li class="timeline-bullet relative"><strong class="text-stone-900 dark:text-stone-100">Collaboration:</strong> Partnered with cross-functional teams to review SQL-based data transformations and optimize cloud-based data processing workloads.</li>
 </ul>
 </div>
  
                     <div id="details-intern" class="job-details hidden animation-fadeIn">
-<h4 class="text-2xl font-bold text-stone-800 mb-4 border-b border-stone-200 pb-2">Key Responsibilities (Intern)</h4>
-<ul class="space-y-4 pl-4 relative text-stone-700 text-lg">
-<li class="timeline-bullet relative" style="color:#64748b"><strong class="text-stone-900">Underwriting Systems:</strong> Assisted in the development of ML-based insurance underwriting workflows, focusing on data pipeline integrity and prediction accuracy.</li>
-<li class="timeline-bullet relative" style="color:#64748b"><strong class="text-stone-900">Experimental Tracking:</strong> Gained hands-on experience in MLflow, documenting model parameters and performance metrics during the R&D phase.</li>
-<li class="timeline-bullet relative" style="color:#64748b"><strong class="text-stone-900">Data Preparation:</strong> Performed exploratory data analysis (EDA), data cleaning, and outlier detection for diverse datasets using Pandas and NumPy.</li>
-<li class="timeline-bullet relative" style="color:#64748b"><strong class="text-stone-900">Technical Optimization:</strong> Contributed to the optimization of SQL queries for backend data processing, improving data ingestion speeds.</li>
+<h4 class="text-2xl font-bold text-stone-800 dark:text-stone-200 mb-4 border-b border-stone-200 dark:border-stone-600 pb-2">Key Responsibilities (Intern)</h4>
+<ul class="space-y-4 pl-4 relative text-stone-700 dark:text-stone-300 text-lg">
+<li class="timeline-bullet relative" style="color:#64748b"><strong class="text-stone-900 dark:text-stone-100">Underwriting Systems:</strong> Assisted in the development of ML-based insurance underwriting workflows, focusing on data pipeline integrity and prediction accuracy.</li>
+<li class="timeline-bullet relative" style="color:#64748b"><strong class="text-stone-900 dark:text-stone-100">Experimental Tracking:</strong> Gained hands-on experience in MLflow, documenting model parameters and performance metrics during the R&D phase.</li>
+<li class="timeline-bullet relative" style="color:#64748b"><strong class="text-stone-900 dark:text-stone-100">Data Preparation:</strong> Performed exploratory data analysis (EDA), data cleaning, and outlier detection for diverse datasets using Pandas and NumPy.</li>
+<li class="timeline-bullet relative" style="color:#64748b"><strong class="text-stone-900 dark:text-stone-100">Technical Optimization:</strong> Contributed to the optimization of SQL queries for backend data processing, improving data ingestion speeds.</li>
 </ul>
 </div>
 </div>
@@ -291,31 +529,34 @@
             </div>
 </section>
  
-        <section id="section-portfolio" class="view-section">
+        <section id="section-portfolio" class="view-section" data-aos="fade-up">
 <div class="mb-8">
-<h2 class="text-3xl font-bold text-stone-900 mb-3">Featured Projects & Education</h2>
-<p class="text-stone-600 text-lg max-w-3xl">
+<h2 class="text-3xl font-bold text-stone-900 dark:text-stone-100 mb-3">Featured Projects & Education</h2>
+<p class="text-stone-600 dark:text-stone-400 text-lg max-w-3xl">
 
                     A deep dive into major structural projects implemented at Finstein, alongside my academic foundations that empower my data and algorithmic capabilities.
 </p>
 </div>
  
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-<div class="bg-white rounded-2xl shadow-sm border border-stone-200 p-8 hover:border-teal-300 transition-colors duration-300">
-<div class="inline-block bg-teal-100 text-teal-800 px-3 py-1 rounded font-bold text-xs uppercase tracking-wider mb-4">Core Enterprise Project</div>
-<h3 class="text-2xl font-bold text-stone-900 mb-2">Azure Databricks Pipeline</h3>
-<p class="text-teal-700 font-medium mb-6">Automated Security Gates (ML & LLM Integration) at Finstein</p>
-<div class="space-y-4 text-stone-700">
-<p><strong class="text-stone-900 block border-b border-stone-100 pb-1 mb-1">Architecture</strong> Designed a scalable data ingestion and transformation pipeline using Apache Spark on Azure Databricks.</p>
+<div class="card-3d">
+<div class="card bg-white dark:bg-stone-800 rounded-2xl shadow-sm border border-stone-200 dark:border-stone-700 p-8 hover:border-teal-300 dark:hover:border-teal-600 transition-colors duration-300">
+<div class="inline-block bg-teal-100 dark:bg-teal-900 text-teal-800 dark:text-teal-200 px-3 py-1 rounded font-bold text-xs uppercase tracking-wider mb-4">Core Enterprise Project</div>
+<h3 class="text-2xl font-bold text-stone-900 dark:text-stone-100 mb-2">Azure Databricks Pipeline</h3>
+<p class="text-teal-700 dark:text-teal-400 font-medium mb-6">Automated Security Gates (ML & LLM Integration) at Finstein</p>
+<div class="space-y-4 text-stone-700 dark:text-stone-300">
+<p><strong class="text-stone-900 dark:text-stone-100 block border-b border-stone-100 dark:border-stone-600 pb-1 mb-1">Architecture</strong> Designed a scalable data ingestion and transformation pipeline using Apache Spark on Azure Databricks.</p>
 <p><strong class="text-stone-900 block border-b border-stone-100 pb-1 mb-1">AI Integration</strong> Explored and integrated LLM-based solutions to automate data labeling and enhance semantic insights from unstructured data.</p>
 <p><strong class="text-stone-900 block border-b border-stone-100 pb-1 mb-1">Governance</strong> Implemented automated validation checks and security gates within the pipeline to ensure data compliance and model reliability.</p>
-<p><strong class="text-stone-900 block border-b border-stone-100 pb-1 mb-1">Lifecycle Management</strong> Managed the full model transition from staging to production using MLflow Model Registry.</p>
+<p><strong class="text-stone-900 dark:text-stone-100 block border-b border-stone-100 dark:border-stone-600 pb-1 mb-1">Lifecycle Management</strong> Managed the full model transition from staging to production using MLflow Model Registry.</p>
+</div>
 </div>
 </div>
  
                 <div class="space-y-8">
-<div class="bg-stone-800 text-white rounded-2xl shadow-sm p-8 relative overflow-hidden">
-<div class="absolute top-0 right-0 p-4 text-6xl opacity-10">🎓</div>
+<div class="card-3d">
+<div class="card bg-stone-800 text-white rounded-2xl shadow-sm p-8 relative overflow-hidden">
+<div class="absolute top-0 right-0 p-4 text-6xl opacity-10 float">🎓</div>
 <h3 class="text-2xl font-bold mb-6 text-teal-300 border-b border-stone-600 pb-2">Academic Background</h3>
 <div class="mb-6">
 <h4 class="text-xl font-bold text-white">Master of Computer Application (MCA)</h4>
@@ -335,16 +576,19 @@
 </div>
 </div>
 </div>
+</div>
  
-                    <div class="bg-white rounded-2xl shadow-sm border border-stone-200 p-8 flex items-start gap-4">
-<div class="text-4xl">📜</div>
+                    <div class="card-3d">
+<div class="card bg-white dark:bg-stone-800 rounded-2xl shadow-sm border border-stone-200 dark:border-stone-700 p-8 flex items-start gap-4">
+<div class="text-4xl float">📜</div>
 <div>
-<h3 class="text-lg font-bold text-stone-900 mb-1">Certifications & Languages</h3>
-<p class="text-stone-700 text-sm mb-3">Completed a comprehensive <strong>Python course</strong> at SRM Info Tech, focusing deeply on Data Structures, Algorithms, and Object-Oriented Programming (OOP).</p>
+<h3 class="text-lg font-bold text-stone-900 dark:text-stone-100 mb-1">Certifications & Languages</h3>
+<p class="text-stone-700 dark:text-stone-300 text-sm mb-3">Completed a comprehensive <strong>Python course</strong> at SRM Info Tech, focusing deeply on Data Structures, Algorithms, and Object-Oriented Programming (OOP).</p>
 <div class="flex gap-2">
-<span class="bg-stone-100 text-stone-600 px-2 py-1 text-xs rounded border border-stone-200">Urdu (Native)</span>
-<span class="bg-stone-100 text-stone-600 px-2 py-1 text-xs rounded border border-stone-200">Tamil</span>
-<span class="bg-stone-100 text-stone-600 px-2 py-1 text-xs rounded border border-stone-200">English</span>
+<span class="bg-stone-100 dark:bg-stone-700 text-stone-600 dark:text-stone-400 px-2 py-1 text-xs rounded border border-stone-200 dark:border-stone-600">Urdu (Native)</span>
+<span class="bg-stone-100 dark:bg-stone-700 text-stone-600 dark:text-stone-400 px-2 py-1 text-xs rounded border border-stone-200 dark:border-stone-600">Tamil</span>
+<span class="bg-stone-100 dark:bg-stone-700 text-stone-600 dark:text-stone-400 px-2 py-1 text-xs rounded border border-stone-200 dark:border-stone-600">English</span>
+</div>
 </div>
 </div>
 </div>
@@ -588,6 +832,27 @@
             chartInstance = new Chart(ctx, config);
 
         }
+
+        // Dark mode toggle
+        function toggleDarkMode() {
+            document.documentElement.classList.toggle('dark');
+            const isDark = document.documentElement.classList.contains('dark');
+            localStorage.setItem('darkMode', isDark);
+        }
+
+        // Load dark mode preference
+        if (localStorage.getItem('darkMode') === null) {
+            document.documentElement.classList.add('dark');
+            localStorage.setItem('darkMode', 'true');
+        } else if (localStorage.getItem('darkMode') === 'true') {
+            document.documentElement.classList.add('dark');
+        }
+
+</script>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+        // Initialize AOS after script load
+        AOS.init();
 </script>
 </body>
 </html>
